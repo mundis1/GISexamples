@@ -2,7 +2,8 @@
 
 **GIS | Spatial Analysis | Data Visualization | Health and Population Mapping**
 
-Welcome to my portfolio! I’m a GIS professional with experience developing spatial solutions that bridge data, technology, and public health insight.  
+Welcome to my portfolio! I’m a GIS professional with experience developing solutions using demographic data, spatial analysis, and statistical modelling.
+
 This site highlights selected projects and scripts I’ve developed using **ArcGIS Pro**, **Python (arcpy)**, and **R** for geospatial and statistical analysis.
 
 ---
@@ -34,5 +35,6 @@ Collection of R scripts for cleaning and merging large health and demographic da
 - **LinkedIn:** https://www.linkedin.com/in/stephaniemundis/ 
 
 ---
+
 
 *Thanks for visiting!*
