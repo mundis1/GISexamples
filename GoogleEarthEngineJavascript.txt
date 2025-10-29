@@ -1,0 +1,36 @@
+// This script extracts land surface temperature from the MODIS
+// satellite for the area of Texas, creates a time series chart, and finds
+// the maximum value of each pixel for this time period and exports the dataset
+var dataset = ee.ImageCollection('MODIS/061/MOD11A2').filter(ee.Filter.date('2019-05-01', '2019-09-30'));
+
+
+var modLSTday = dataset.select('LST_Day_1km');
+
+var modLSTc = modLSTday.map(function(img) {
+  return img
+    .multiply(0.02)
+    .subtract(273.15)
+    .copyProperties(img, ['system:time_start']);
+});
+
+// Chart time series of LST for Texas
+var ts1 = ui.Chart.image.series({
+  imageCollection: modLSTc,
+  region: ROI,
+  reducer: ee.Reducer.mean(),
+  scale: 1000,
+  xProperty: 'system:time_start'})
+  .setOptions({
+     title: 'LST 2019 Time Series',
+     vAxis: {title: 'LST Celsius'}});
+print(ts1);
+
+
+// print(dataset.size())
+
+var maxComposite = modLSTc.max().clip(ROI);
+Map.addLayer(maxComposite, {}, 'max value composite');
+
+Export.image.toDrive({
+   image: maxComposite,
+ })
